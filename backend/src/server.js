@@ -1,3 +1,4 @@
+cat > ~/gallery-pi-server/backend/src/server.js << 'EOF'
 const express = require('express');
 const cors = require('cors');
 const pool = require('./db');
@@ -9,7 +10,6 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
 
-// Health check
 app.get('/api/health', async (req, res) => {
   try {
     await pool.query('SELECT 1');
@@ -19,19 +19,16 @@ app.get('/api/health', async (req, res) => {
   }
 });
 
-// API routes
 app.use('/api/images', require('./routes/images'));
 app.use('/api/users', require('./routes/users'));
 
-// Root
 app.get('/', (req, res) => {
-  res.json({ 
-    message: 'Gallery API', 
+  res.json({
+    message: 'Gallery API',
     endpoints: ['/api/images', '/api/users', '/api/health']
   });
 });
 
-// Čekaj bazu prije pokretanja servera
 async function startServer() {
   let retries = 20;
   while (retries > 0) {
@@ -52,3 +49,4 @@ async function startServer() {
 }
 
 startServer();
+EOF
