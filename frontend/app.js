@@ -1,4 +1,4 @@
-const API_URL = 'http://192.168.0.200:3000/api';
+const API_URL = 'http://localhost:3000/api';
 
 let currentUser = null;
 let authToken = localStorage.getItem('token');
