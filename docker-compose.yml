@@ -1,0 +1,60 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: gallery_mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: gallery123
+      MYSQL_DATABASE: gallery
+    volumes:
+      - mysql_data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    networks:
+      - gallery_network
+
+  backend:
+    build: ./backend
+    container_name: gallery_backend
+    restart: always
+    environment:
+      DB_HOST: mysql
+      DB_PORT: 3306
+      DB_USER: root
+      DB_PASSWORD: gallery123
+      DB_NAME: gallery
+      JWT_SECRET: super_tajni_kljuc_za_gallery
+      PORT: 3000
+      USB_PATH: /mnt/usb/gallery
+    volumes:
+      - /mnt/usb:/mnt/usb:rw
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mysql
+    networks:
+      - gallery_network
+
+  nginx:
+    image: nginx:alpine
+    container_name: gallery_nginx
+    restart: always
+    ports:
+      - "8080:80"
+    volumes:
+      - ./frontend:/usr/share/nginx/html:ro
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - /mnt/usb/gallery:/images:ro
+    depends_on:
+      - backend
+    networks:
+      - gallery_network
+
+volumes:
+  mysql_data:
+
+networks:
+  gallery_network:
+    driver: bridge

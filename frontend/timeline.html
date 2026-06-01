@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gallery - Timeline</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="timeline.css">
+</head>
+<body>
+  <nav class="navbar">
+    <h1>🖼️ Gallery</h1>
+    <div class="nav-links">
+      <a href="index.html">Upload</a>
+      <a href="timeline.html" class="active">Timeline</a>
+      <a href="users.html">Korisnici</a>
+      <button onclick="logout()" class="btn-logout">Odjava</button>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="filters">
+      <select id="yearFilter" onchange="loadTimeline()">
+        <option value="">Sve godine</option>
+      </select>
+      <select id="monthFilter" onchange="loadTimeline()">
+        <option value="">Svi mjeseci</option>
+        <option value="1">Siječanj</option>
+        <option value="2">Veljača</option>
+        <option value="3">Ožujak</option>
+        <option value="4">Travanj</option>
+        <option value="5">Svibanj</option>
+        <option value="6">Lipanj</option>
+        <option value="7">Srpanj</option>
+        <option value="8">Kolovoz</option>
+        <option value="9">Rujan</option>
+        <option value="10">Listopad</option>
+        <option value="11">Studeni</option>
+        <option value="12">Prosinac</option>
+      </select>
+      <select id="categoryFilter" onchange="loadTimeline()">
+        <option value="">Sve kategorije</option>
+      </select>
+      <button onclick="loadTimeline()" class="btn">Osvježi</button>
+    </div>
+
+    <div id="timeline" class="timeline">
+      <p>Učitavanje...</p>
+    </div>
+  </div>
+
+  <div id="lightbox" class="lightbox hidden" onclick="closeLightbox(event)">
+    <img id="lightboxImg" src="" alt="">
+    <div class="lightbox-info">
+      <h3 id="lightboxTitle"></h3>
+      <p id="lightboxDesc"></p>
+      <button onclick="deleteImage()" class="btn-danger">Obriši</button>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+  <script src="timeline.js"></script>
+</body>
+</html>

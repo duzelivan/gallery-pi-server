@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gallery - Upload</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav class="navbar">
+    <h1>🖼️ Gallery</h1>
+    <div class="nav-links">
+      <a href="index.html" class="active">Upload</a>
+      <a href="timeline.html">Timeline</a>
+      <a href="users.html">Korisnici</a>
+      <button onclick="logout()" class="btn-logout">Odjava</button>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div id="loginSection" class="login-section">
+      <h2>Prijava</h2>
+      <form id="loginForm" onsubmit="login(event)">
+        <input type="text" id="username" placeholder="Korisničko ime" required>
+        <input type="password" id="password" placeholder="Lozinka" required>
+        <button type="submit" class="btn-primary">Prijavi se</button>
+      </form>
+    </div>
+
+    <div id="uploadSection" class="hidden">
+      <div class="card">
+        <h2>⬆️ Upload slike</h2>
+        <form id="uploadForm" onsubmit="uploadImage(event)">
+          <div class="form-group">
+            <label>Slika:</label>
+            <input type="file" id="imageFile" accept="image/*" required>
+          </div>
+          <div class="form-group">
+            <label>Naslov:</label>
+            <input type="text" id="title" placeholder="Naslov slike">
+          </div>
+          <div class="form-group">
+            <label>Opis:</label>
+            <textarea id="description" placeholder="Opis slike"></textarea>
+          </div>
+          <div class="form-group">
+            <label>Kategorija:</label>
+            <input type="text" id="category" placeholder="npr. Obitelj, Putovanje, Posao">
+          </div>
+          <div class="form-group">
+            <label>Datum:</label>
+            <input type="date" id="dateTaken">
+          </div>
+          <button type="submit" class="btn-primary">Upload</button>
+        </form>
+        <div id="uploadResult" class="result"></div>
+      </div>
+
+      <div class="card">
+        <h2>💾 USB Status</h2>
+        <div id="usbStatus" class="usb-info">
+          <p>Provjeravam...</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
