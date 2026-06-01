@@ -12,6 +12,8 @@ const pool = mysql.createPool({
   queueLimit: 0
 });
 
+module.exports = pool;
+
 async function initDb() {
   let retries = 15;
   while (retries > 0) {
