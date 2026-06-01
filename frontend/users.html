@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gallery Pi — Korisnici</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav class="navbar">
+    <h1>Gallery Pi Server</h1>
+    <div class="nav-links">
+      <a href="index.html">Upload</a>
+      <a href="timeline.html">Timeline</a>
+      <a href="users.html" class="active">Korisnici</a>
+      <button onclick="logout()" class="btn-logout">Odjava</button>
+    </div>
+  </nav>
+
+  <div class="container">
+    <!-- Admin Section -->
+    <div id="adminSection" class="hidden">
+      <!-- Add User Card -->
+      <div class="card" style="max-width: 600px;">
+        <h2>+ Novi korisnik</h2>
+        <form id="userForm" onsubmit="addUser(event)">
+          <div class="form-row">
+            <div class="form-group">
+              <label>Korisničko ime</label>
+              <input type="text" id="newUsername" placeholder="novi_korisnik" required>
+            </div>
+            <div class="form-group">
+              <label>Lozinka</label>
+              <input type="password" id="newPassword" placeholder="••••••••" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Rola</label>
+              <select id="newRole">
+                <option value="user">Korisnik</option>
+                <option value="admin">Administrator</option>
+              </select>
+            </div>
+            <div class="form-group" style="display: flex; align-items: flex-end;">
+              <button type="submit" class="btn-primary" style="width: 100%;">Dodaj korisnika →</button>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <!-- Users List Card -->
+      <div class="card">
+        <h2>Lista korisnika</h2>
+        <div id="usersList" class="users-list">
+          <p class="loading">Učitavanje...</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- No Access -->
+    <div id="noAccess" class="hidden">
+      <div class="card" style="text-align: center; padding: 80px;">
+        <div style="font-size: 64px; margin-bottom: 20px; opacity: 0.5;">🔒</div>
+        <p class="error" style="font-size: 18px; margin-bottom: 10px;">Pristup odbijen</p>
+        <p style="color: var(--text-muted); font-family: 'JetBrains Mono', monospace; font-size: 13px;">Samo administratori mogu vidjeti ovu stranicu.</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+  <script src="users.js"></script>
+  <script src="effects.js"></script>
+</body>
+</html>
