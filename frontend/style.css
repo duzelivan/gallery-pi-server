@@ -1004,6 +1004,69 @@ input[type="file"]::-webkit-file-upload-button:hover {
 }
 
 /* ═══════════════════════════════════════════════════════════════
+   UPLOAD PROGRESS BAR
+   ═══════════════════════════════════════════════════════════════ */
+
+.upload-progress {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.progress-track {
+  flex: 1;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--cyan), var(--purple));
+  border-radius: 10px;
+  transition: width 0.2s ease;
+  box-shadow: 0 0 10px var(--cyan-glow);
+  position: relative;
+}
+
+.progress-fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 20px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4));
+  border-radius: 0 10px 10px 0;
+}
+
+.progress-text {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--cyan);
+  min-width: 40px;
+  text-align: right;
+}
+
+/* Upload button disabled state */
+.btn-primary:disabled,
+.btn-primary:disabled:hover {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.btn-primary:disabled::after {
+  display: none;
+}
+
+/* ═══════════════════════════════════════════════════════════════
    FLOATING PARTICLES DECORATION
    ═══════════════════════════════════════════════════════════════ */
 
